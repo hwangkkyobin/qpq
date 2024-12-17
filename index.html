@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open 1000 Windows</title>
+  <script>
+    function openWindowsWithFullscreen() {
+      const targetURL = "https://s1.blackdesertm.com/KR/FORUM/BDM/Upload/Board/2cba11e44b320190706082719820.gif"; // 원하는 사이트
+      const totalWindows = 10; // 테스트용으로 개수를 줄임
+
+      for (let i = 0; i < totalWindows; i++) {
+        const newWindow = window.open(targetURL, "_blank", "width=800,height=600");
+
+        if (newWindow) {
+          try {
+            newWindow.document.addEventListener("DOMContentLoaded", () => {
+              // 새 창에서 전체화면 전환 요청
+              newWindow.document.documentElement.requestFullscreen();
+            });
+          } catch (error) {
+            console.error("Fullscreen 실패:", error);
+          }
+        } else {
+          console.error(`창 열기 실패: ${i + 1}`);
+          break;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>1000개의 창 열기</h1>
+  <button onclick="openWindowsWithFullscreen()">창 열기 및 전체화면</button>
+</body>
+</html>
